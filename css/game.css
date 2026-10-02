@@ -328,40 +328,44 @@ button:disabled {
   html,
   body {
     width: 100%;
-
+    margin: 0;
+    padding: 0;
     overflow-x: hidden;
-
     background-attachment: scroll;
   }
 
   #wrapper {
     width: 100%;
-
     min-height: 100vh;
+    padding: 0;
 
-    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   #content {
     width: 100%;
+    padding: 10px 0;
 
-    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 
     gap: 10px;
-
-    flex-direction: column;
-
-    align-items: center;
   }
 
   .col1 {
-    width: 95%;
-
+    width: calc(100% - 20px);
+    margin: 0 auto;
     padding: 12px;
   }
 
   h1 {
     font-size: 48px;
+
+    text-align: center;
 
     text-shadow:
       2px 2px 0px #f4ef4f,
@@ -375,22 +379,22 @@ button:disabled {
 
   #directions {
     font-size: 14px;
-
     line-height: 1.4;
-
     margin: 8px 0 12px;
   }
 
   #sectionA {
-    gap: 8px;
+    width: 100%;
 
+    justify-content: center;
+
+    gap: 8px;
     margin-bottom: 15px;
   }
 
   #score,
   #timer {
     font-size: 1rem;
-
     padding: 6px 12px;
   }
 
@@ -399,12 +403,10 @@ button:disabled {
   }
 
   #gamespace {
-    width: calc(100vw - 20px);
+    width: calc(100% - 20px);
 
     height: 55vh;
-
     min-height: 340px;
-
     max-height: 500px;
 
     margin: 5px auto;
