@@ -327,10 +327,9 @@ button:disabled {
 @media only screen and (max-width: 600px) {
   html,
   body {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
+    background-size: auto 100%;
+    background-position: center top;
+    background-repeat: repeat-y;
     background-attachment: scroll;
   }
 
