@@ -107,7 +107,7 @@ button:hover {
 
 /* taco sizing */
 .taco-img {
-    width: 120px;
+    width: 80px;
     position: absolute;
     
 }
@@ -163,4 +163,47 @@ button:hover {
 
 
 
+}
+
+.taco-eaten {
+    animation: tacoEaten 0.4s ease forwards;
+}
+
+@keyframes tacoEaten {
+
+    0% {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.4) rotate(15deg);
+    }
+
+    100% {
+        transform: scale(0) rotate(45deg);
+        opacity: 0;
+    }
+}
+
+.points-popup {
+    position: absolute;
+    font-family: 'Luckiest Guy', cursive;
+    font-size: 28px;
+    color: #c30000;
+    pointer-events: none;
+    animation: pointsUp 0.7s ease forwards;
+}
+
+@keyframes pointsUp {
+
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
 }
