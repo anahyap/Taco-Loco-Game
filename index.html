@@ -1,23 +1,28 @@
-<!-- 
-		Name: Anahya Pankey
-		Date: 02/19/26
-		Class: CSCI2447, Javascript Fundamentals
-		Project 2
- -->
+<!--
+    Name: Anahya Pankey
+    Date: 02/19/26
+    Class: CSCI2447, Javascript Fundamentals
+    Project 2
+-->
 
 <!doctype html>
 <html>
   <head>
     <title>Taco Loco</title>
-    <link href="css/game.css" rel="stylesheet" />
+
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link href="css/game.css" rel="stylesheet" />
 
     <link
       href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Poppins:wght@400;600&display=swap"
       rel="stylesheet"
     />
+
     <link rel="icon" type="image/png" href="img/taco.png" />
   </head>
+
   <body>
     <div id="wrapper">
       <div id="content">
@@ -35,12 +40,10 @@
 
           <div id="sectionA">
             <span id="score">0 Tacos</span>
-            <span id="timer"> 30 seconds left!</span>
+            <span id="timer">30 seconds left!</span>
           </div>
 
           <button type="button" id="start_button">Start!</button>
-
-          <div class="timer"></div>
         </div>
 
         <div id="gamespace"></div>
@@ -50,127 +53,150 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
     <script>
-      // random number generator outside of document ready
+      // player name
+      let gamer = prompt("Enter first name:");
+
+      document.getElementById("greeting").innerHTML =
+        `Get ready to go taco CRAZY, ${gamer}!`;
+
+      // score and timer variables
+      let score = 0;
+      let secondsRemaining = 30;
+
+      let timerInterval;
+      let t;
+
+      let imageCount = 0;
+
+      // get taco size depending on screen size
+      function getTacoSize() {
+        if (window.innerWidth <= 600) {
+          return 80;
+        }
+
+        return 120;
+      }
+
+      // get random x position
       function getX() {
-        let tacoSize = window.innerWidth <= 600 ? 80 : 120;
+        let tacoSize = getTacoSize();
 
         return Math.floor(Math.random() * ($("#gamespace").width() - tacoSize));
       }
 
+      // get random y position
       function getY() {
-        let tacoSize = window.innerWidth <= 600 ? 80 : 120;
+        let tacoSize = getTacoSize();
 
         return Math.floor(
           Math.random() * ($("#gamespace").height() - tacoSize),
         );
       }
 
-      // score increment function
-      let score = 0;
-      let secondsRemaining = 30;
-
-      // update score and store score by incrementing by 1
+      // increase score
       function keepScore() {
         score++;
-        $("span#score").text(`${score} tacos`);
+
+        $("#score").text(`${score} tacos`);
       }
 
-      // timer
-
-      let timerInterval;
-
-      // countdown timer counts down backwards from 30 until 0
+      // countdown timer
       function reverseTimer() {
         timerInterval = setInterval(function () {
           if (secondsRemaining > 0) {
             secondsRemaining--;
+
             $("#timer").text(`${secondsRemaining} seconds left!`);
           } else {
-            // stop the timer and tacos
             clearInterval(timerInterval);
             clearTimeout(t);
+
             $("#timer").text("Clean Your Dishes!");
 
-            // remove all left over tacos and disable clicking
+            // remove tacos still on screen
             $(".taco-img").fadeOut(300, function () {
               $(this).remove();
             });
-            $("#gamespace").off("click");
 
-            // showcase final score and reset the game
+            // show score
             setTimeout(function () {
               alert(`I bet you're full! You ate ${score} tacos, ${gamer}!`);
+
               resetGame();
             }, 500);
           }
         }, 1000);
       }
 
-      // resets the game
+      // reset game
       function resetGame() {
         score = 0;
         secondsRemaining = 30;
-        $("span#score").text("0 Tacos");
-        $("#timer").text("30 seconds left!");
-        $("#timer").hide();
         imageCount = 0;
 
-        // re-enable start button click
-        $("#start_button").on("click", function () {
-          start();
-          $("#start_button").off("click");
-        });
+        $("#score").text("0 Tacos");
+        $("#timer").text("30 seconds left!");
+        $("#timer").hide();
+
+        $("#start_button").prop("disabled", false).text("Start!");
       }
 
-      // starts timer and adds tacos to gamespace
+      // start game
       function start() {
+        $("#start_button").prop("disabled", true).text("Go!");
+
         reverseTimer();
+
         $("#timer").show();
+
         addImage();
       }
 
-      // make tacos reappear
-
-      let t;
-      let imageCount = 0;
-
+      // add taco
       function addImage() {
         let x = getX();
         let y = getY();
-        let randomTime = Math.max(250, 1200 - score * 50);
+
+        // tacos appear faster as score increases
+        let randomTime = Math.max(200, 800 - score * 30);
+
+        // taco stays visible between 1 and 4 seconds
         let randomRemoveTime = Math.floor(Math.random() * 3000) + 1000;
 
-        // give each taco a ID so we can remove it individually
         imageCount++;
+
         let tacoId = "taco-" + imageCount;
 
         $("#gamespace").append(
-          `<img src="img/taco.png" alt="big taco" class="taco-img" id="${tacoId}" style="left:${x}px; top:${y}px;">`,
+          `<img
+                    src="img/taco.png"
+                    alt="taco"
+                    class="taco-img"
+                    id="${tacoId}"
+                    style="left:${x}px; top:${y}px;"
+                >`,
         );
 
-        // remove this specific taco after a random time
+        // automatically remove taco after random amount of time
         setTimeout(function () {
           $("#" + tacoId).fadeOut(300, function () {
             $(this).remove();
           });
         }, randomRemoveTime);
 
+        // create another taco
         t = setTimeout(addImage, randomTime);
       }
-    </script>
 
-    <script>
       $(document).ready(function () {
-        // timer
         $("#timer").hide();
 
-        // add click event listener
+        // start game
         $("#start_button").on("click", function () {
           start();
-          $("#start_button").off("click");
         });
 
-        // make taco clickable
+        // taco click
         $("#gamespace").on("click", ".taco-img", function () {
           keepScore();
 
@@ -179,40 +205,32 @@
           let tacoX = taco.position().left;
           let tacoY = taco.position().top;
 
-          $("#gamespace").append(
-            `<span class="points-popup"
-        style="left:${tacoX}px; top:${tacoY}px;">
-        +1
-        </span>`,
+          // create +1 animation
+          let points = $(
+            `<span
+                            class="points-popup"
+                            style="left:${tacoX}px; top:${tacoY}px;"
+                        >
+                            +1
+                        </span>`,
           );
 
+          $("#gamespace").append(points);
+
+          // make taco pop away
           taco.addClass("taco-eaten");
 
-          setTimeout(() => {
+          // remove taco
+          setTimeout(function () {
             taco.remove();
           }, 400);
-        });
 
-        // edit start button
-        $("#start_button").css({
-          width: "100px",
-          height: "50px",
-          "font-size": "18px",
-          "background-color": "#41eb43",
-          color: "white",
+          // remove +1
+          setTimeout(function () {
+            points.remove();
+          }, 700);
         });
-
-        // add footer
-        $("footer").load("/~apankey4/csci2447/project5/load.html");
       });
-
-      let gamer;
-
-      gamer = prompt("Enter first name:");
-
-      document.getElementById("greeting").innerHTML =
-        `Get ready to go taco CRAZY, ${gamer}!`;
     </script>
-    <footer></footer>
   </body>
 </html>

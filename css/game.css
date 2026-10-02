@@ -1,209 +1,422 @@
 /* CSS Document */
 
-html, body {
-    margin: 0;
-    padding: 0;
-    min-height: 100vh;
-
-    background-image: url("../img/fiesta.png");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-attachment: fixed; /
+* {
+  box-sizing: border-box;
 }
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+
+  font-family: "Poppins", sans-serif;
+
+  background-image: url("../img/fiesta.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+}
+
+/* main wrapper */
 
 #wrapper {
-    max-width: 1200px;
-    margin: 0 auto;
-    position: relative;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  position: relative;
+
+  min-height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
 }
+
+/* page content */
+
+#content {
+  width: 100%;
+
+  padding: 20px;
+
+  display: flex;
+  flex-wrap: wrap;
+
+  justify-content: center;
+  align-items: center;
+
+  gap: 20px;
+}
+
+/* title */
 
 h1 {
-    position: relative;
-    margin: 2px;
-    font-size: clamp(60px, 9vw, 100px); 
-    font-family: 'Luckiest Guy', cursive;
-    color: #c30000;
-    text-shadow: 3px 3px 0px #f4ef4f,
-                 6px 6px 0px #41eb43,
-                 12px 12px 0px #000000;
+  position: relative;
+
+  margin: 2px;
+
+  font-size: clamp(60px, 9vw, 100px);
+
+  font-family: "Luckiest Guy", cursive;
+
+  color: #c30000;
+
+  text-shadow:
+    3px 3px 0px #f4ef4f,
+    6px 6px 0px #41eb43,
+    12px 12px 0px #000000;
 }
+
+/* paragraphs */
 
 p {
-    color: rgb(111, 61, 0);
+  color: rgb(111, 61, 0);
 }
+
+/* greeting */
 
 #greeting {
-    color: rgb(111, 61, 0);
-    font-weight: 600;
-    font-size: 1.1rem;
-    font-family: 'Luckiest Guy', cursive;
-    font-size: 1.4rem;
-    color: rgb(111, 61, 0)
+  font-weight: 600;
+
+  font-family: "Luckiest Guy", cursive;
+
+  font-size: 1.4rem;
+
+  color: rgb(111, 61, 0);
 }
 
+/* left side card */
 
+.col1 {
+  text-align: center;
+
+  width: clamp(280px, 40vw, 500px);
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(255, 255, 255, 0.35);
+
+  backdrop-filter: blur(6px);
+
+  border-radius: 20px;
+
+  padding: 20px;
+
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+/* start button */
 
 button {
-    padding: 15px;
-    background-color: rgb(32, 140, 32);
-    color: #FFF;
-    border-radius: 15px;
-    border: none;
-    cursor: pointer;
-    font-size: 1rem;
+  padding: 15px 25px;
+
+  background-color: rgb(32, 140, 32);
+
+  color: #fff;
+
+  border-radius: 15px;
+
+  border: none;
+
+  cursor: pointer;
+
+  font-size: 1rem;
+
+  font-weight: 600;
+
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
 }
 
 button:hover {
-    transform: translateY(-2px);
+  transform: translateY(-2px);
 }
 
-#content {
-    padding: 20px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 10px;
+button:disabled {
+  opacity: 0.7;
+
+  cursor: default;
+
+  transform: none;
 }
+
+/* score and timer */
+
+#sectionA {
+  display: flex;
+
+  align-items: center;
+
+  gap: 20px;
+
+  justify-content: center;
+
+  margin-bottom: 25px;
+
+  flex-wrap: wrap;
+}
+
+#score,
+#timer {
+  text-align: center;
+
+  background: rgba(255, 255, 255, 0.75);
+
+  padding: 8px 18px;
+
+  border-radius: 20px;
+
+  display: inline-block;
+
+  backdrop-filter: blur(4px);
+
+  font-family: "Luckiest Guy", cursive;
+
+  font-size: 1.4rem;
+
+  color: #c30000;
+}
+
+/* game space */
 
 #gamespace {
-    overflow: hidden;
-    cursor: url('../img/cursor.cur'), auto;
-    position: relative;
-    margin: 20px;
-    height: clamp(250px, 55vw, 700px);
-    width: clamp(300px, 50vw, 650px);  
-    background-color: #FFF;
-    border: 5px solid #000000;
-    border-radius: 15px;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
 
-    background-image: url("../img/background.png");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-}
+  cursor: url("../img/cursor.cur"), auto;
 
-.col1 {
-    text-align: center;
-    width: clamp(280px, 40vw, 500px); 
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  position: relative;
 
-    
-    background: rgba(255, 255, 255, 0.35);
-    backdrop-filter: blur(6px);
-    border-radius: 20px;
-    padding: 20px;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+  margin: 20px;
 
+  height: clamp(300px, 55vw, 700px);
+
+  width: clamp(300px, 50vw, 650px);
+
+  background-color: #fff;
+
+  border: 5px solid #000000;
+
+  border-radius: 15px;
+
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+
+  background-image: url("../img/background.png");
+
+  background-size: cover;
+
+  background-repeat: no-repeat;
+
+  background-position: center;
 }
 
 /* taco sizing */
+
 .taco-img {
-    width: 80px;
-    position: absolute;
-    
+  width: 120px;
+
+  position: absolute;
+
+  cursor: pointer;
+
+  user-select: none;
+
+  -webkit-user-drag: none;
 }
 
-#sectionA{
-    display:flex;
-    align-items: center;
-    gap: 20px;
-    justify-content: center;
-    margin-bottom: 25px;
-}
-
-#score {
-    text-align: center;
-    background: rgba(255, 255, 255, 0.75);
-    padding: 8px 18px;
-    border-radius: 20px;
-    display: inline-block;
-    backdrop-filter: blur(4px);
-     font-family: 'Luckiest Guy', cursive;
-    font-size: 1.4rem;
-    color: #c30000;
-}
-
-.timer {
-    flex:1;
-    text-align: right;
-    display: none;
-    font-weight: bold;
-    color: red;
-    padding: 1%;
-     font-family: 'Luckiest Guy', cursive;
-    font-size: 1.4rem;
-}
-
-
-@media only screen and (max-width: 900px) {
-    #content {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .col1 {
-        width: 90vw;
-        min-width: unset;
-    }
-
-    #gamespace {
-        width: 90vw;
-        height: clamp(220px, 50vw, 350px);
-        margin: 10px auto;
-    }
-
-
-
-}
+/* taco eaten animation */
 
 .taco-eaten {
-    animation: tacoEaten 0.4s ease forwards;
+  pointer-events: none;
+
+  animation: tacoEaten 0.4s ease forwards;
 }
 
 @keyframes tacoEaten {
+  0% {
+    transform: scale(1) rotate(0deg);
 
-    0% {
-        transform: scale(1) rotate(0deg);
-        opacity: 1;
-    }
+    opacity: 1;
+  }
 
-    50% {
-        transform: scale(1.4) rotate(15deg);
-    }
+  45% {
+    transform: scale(1.6) rotate(20deg);
 
-    100% {
-        transform: scale(0) rotate(45deg);
-        opacity: 0;
-    }
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(0) rotate(60deg);
+
+    opacity: 0;
+  }
 }
 
+/* +1 popup */
+
 .points-popup {
-    position: absolute;
-    font-family: 'Luckiest Guy', cursive;
-    font-size: 28px;
-    color: #c30000;
-    pointer-events: none;
-    animation: pointsUp 0.7s ease forwards;
+  position: absolute;
+
+  z-index: 100;
+
+  font-family: "Luckiest Guy", cursive;
+
+  font-size: 30px;
+
+  color: #c30000;
+
+  pointer-events: none;
+
+  text-shadow: 2px 2px 0px #ffffff;
+
+  animation: pointsUp 0.7s ease forwards;
 }
 
 @keyframes pointsUp {
+  0% {
+    transform: translateY(0) scale(1);
 
-    0% {
-        transform: translateY(0);
-        opacity: 1;
-    }
+    opacity: 1;
+  }
 
-    100% {
-        transform: translateY(-50px);
-        opacity: 0;
-    }
+  100% {
+    transform: translateY(-60px) scale(1.4);
+
+    opacity: 0;
+  }
+}
+
+/* tablet */
+
+@media only screen and (max-width: 900px) {
+  #wrapper {
+    padding: 10px;
+  }
+
+  #content {
+    flex-direction: column;
+
+    align-items: center;
+
+    padding: 10px;
+  }
+
+  .col1 {
+    width: 90vw;
+  }
+
+  #gamespace {
+    width: 90vw;
+
+    height: clamp(300px, 65vw, 500px);
+
+    margin: 10px auto;
+  }
+}
+
+/* mobile */
+
+@media only screen and (max-width: 600px) {
+  html,
+  body {
+    width: 100%;
+
+    overflow-x: hidden;
+
+    background-attachment: scroll;
+  }
+
+  #wrapper {
+    width: 100%;
+
+    min-height: 100vh;
+
+    padding: 5px;
+  }
+
+  #content {
+    width: 100%;
+
+    padding: 5px;
+
+    gap: 10px;
+
+    flex-direction: column;
+
+    align-items: center;
+  }
+
+  .col1 {
+    width: 95%;
+
+    padding: 12px;
+  }
+
+  h1 {
+    font-size: 48px;
+
+    text-shadow:
+      2px 2px 0px #f4ef4f,
+      4px 4px 0px #41eb43,
+      6px 6px 0px #000000;
+  }
+
+  #greeting {
+    font-size: 1.1rem;
+  }
+
+  #directions {
+    font-size: 14px;
+
+    line-height: 1.4;
+
+    margin: 8px 0 12px;
+  }
+
+  #sectionA {
+    gap: 8px;
+
+    margin-bottom: 15px;
+  }
+
+  #score,
+  #timer {
+    font-size: 1rem;
+
+    padding: 6px 12px;
+  }
+
+  button {
+    padding: 12px 22px;
+  }
+
+  #gamespace {
+    width: calc(100vw - 20px);
+
+    height: 55vh;
+
+    min-height: 340px;
+
+    max-height: 500px;
+
+    margin: 5px auto;
+
+    border-width: 3px;
+  }
+
+  .taco-img {
+    width: 80px;
+  }
+
+  .points-popup {
+    font-size: 24px;
+  }
 }
